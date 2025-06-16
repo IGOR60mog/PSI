@@ -26,9 +26,10 @@ def list_produto_view(request, id=None):
         produtos = produtos.filter(criado_em__gte=now)
     if id is not None:
         produtos = produtos.filter(id=id)
-        print(produtos)
+    print(produtos)
     # Adicione para definir o contexto e carregar o template
     context = {
     'produtos': produtos
     }
-    return render(request, template_name='produto/produto.html', context=context, status=200)
+    return render(request, template_name='produto/produto.html',
+    context=context, status=200)
