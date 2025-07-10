@@ -149,8 +149,8 @@ def create_produto_view(request, id=None):
             obj_produto.Produto = produto
             obj_produto.destaque = (destaque is not None)
             obj_produto.promocao = (promocao is not None)
-            obj_produto.fabricante = Fabricante.objects.all()
-            obj_produto.categoria = Categoria.objects.all()
+            obj_produto.fabricante = Fabricante.objects.filter(id=fabricante).first()
+            obj_produto.categoria = Categoria.objects.filter(id=categoria).first()
             if msgPromocao is not None:
                 obj_produto.msgPromocao = msgPromocao
                 obj_produto.preco = 0
@@ -173,4 +173,5 @@ def create_produto_view(request, id=None):
         except Exception as e:
             print("Erro inserindo produto: %s" % e)
         return redirect("/produto")
-    return render(request, template_name='produto/produto-create.html',status=200)
+
+    return render(request, template_name='produto/produto-create.html', context={"fabricantes": Fabricante.objects.all(), "categorias": Categoria.objects.all()}, status=200)
