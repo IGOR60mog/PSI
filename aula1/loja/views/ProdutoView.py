@@ -4,6 +4,8 @@ from datetime import timedelta, datetime
 from django.utils import timezone
 # inclua as bibliotecas FileSystemStorage
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
+
 
 def list_produto_view(request, id=None):
     produto = request.GET.get("produto")
@@ -37,6 +39,7 @@ def list_produto_view(request, id=None):
     return render(request, template_name='produto/produto.html',
     context=context, status=200)
 
+@login_required
 def edit_produto_view(request, id=None):
     produtos = Produto.objects.all()
     if id is not None:
