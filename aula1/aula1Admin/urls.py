@@ -10,4 +10,6 @@ urlpatterns = [
     path('', include('loja.urls.AuthUrls')),
     path('produto/', include('loja.urls.ProdutoUrls')),
     path('usuario/', include('loja.urls.UsuarioUrls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('carrinho/', include('loja.urls.CarrinhoUrls')),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) \
+  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
