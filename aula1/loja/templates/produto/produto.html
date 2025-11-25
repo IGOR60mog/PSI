@@ -1,19 +1,24 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block title %}Início{% endblock %}
+
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
+
 {% block content %}
 <div id="content">
     <div class="container">
         <div class="alert alert-info">
-            <a href={% url 'create_produto' %} class="btn btn-primary mr-2"> <i class="fa
-        fa-plus"></i> Novo Produto</a>
-            Produtos encontrados [{{ produtos | length }}]
+            <a href="{% url 'create_produto' %}" class="btn btn-primary mr-2">
+                <i class="fa fa-plus"></i> Novo Produto
+            </a>
+            Produtos encontrados [{{ produtos|length }}]
         </div>
+
         {% for prod in produtos %}
-        <div class="row">
+        <div class="row mb-2">
             <h5 class="col-md-3">{{ prod.Produto }}</h5>
             <span class="col-md-3">{{ prod.preco }}</span>
 
@@ -26,6 +31,10 @@
             </a>
         </div>
         {% endfor %}
-        {% block scripts %}
-        <script src="{% static 'js/home.js' %}"></script>
-        {% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}
